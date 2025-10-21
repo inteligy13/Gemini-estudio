@@ -4,15 +4,19 @@ import JerseyCard from './JerseyCard';
 import { Jersey } from '../types';
 
 interface LegendsCollectionProps {
-  onBuyClick: (jersey: Jersey) => void;
+  onVerMasClick: (jersey: Jersey) => void;
 }
 
-const LegendsCollection: React.FC<LegendsCollectionProps> = ({ onBuyClick }) => {
+const LegendsCollection: React.FC<LegendsCollectionProps> = ({ onVerMasClick }) => {
   return (
     <div className="flex space-x-4 md:space-x-8 overflow-x-auto p-4 -m-4 scrollbar-hide">
       {LEGENDS_DATA.map((jersey, index) => (
-        <div key={jersey.id} className="flex-shrink-0 w-11/12 sm:w-full md:w-[400px]">
-          <JerseyCard jersey={jersey} onBuyClick={onBuyClick} animationDelay={index * 200} />
+        <div key={jersey.id} className="flex-shrink-0 w-56 md:w-64">
+          <JerseyCard 
+            jersey={jersey} 
+            animationDelay={index * 200}
+            onVerMasClick={onVerMasClick}
+          />
         </div>
       ))}
     </div>

@@ -15,7 +15,9 @@
             animation: {
               'fade-in-up': 'fade-in-up 0.8s ease-out forwards',
               'fade-in': 'fade-in 1s ease-out forwards',
-              'slide-in-left': 'slide-in-left 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both'
+              'slide-in-left': 'slide-in-left 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both',
+              'progress-bar': 'progress-bar 10s linear forwards',
+              'bounce-subtle': 'bounce-subtle 2s infinite'
             },
             keyframes: {
               'fade-in-up': {
@@ -29,6 +31,14 @@
               'slide-in-left': {
                 '0%': { transform: 'translateX(-1000px)', opacity: '0' },
                 '100%': { transform: 'translateX(0)', opacity: '1' }
+              },
+              'progress-bar': {
+                'from': { width: '0%' },
+                'to': { width: '100%' }
+              },
+              'bounce-subtle': {
+                '0%, 100%': { transform: 'translateY(-5%)', animationTimingFunction: 'cubic-bezier(0.8,0,1,1)' },
+                '50%': { transform: 'translateY(0)', animationTimingFunction: 'cubic-bezier(0,0,0.2,1)' },
               }
             }
           }
@@ -40,7 +50,8 @@
   "imports": {
     "react": "https://aistudiocdn.com/react@^19.2.0",
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/"
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.25.0"
   }
 }
 </script>
