@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useI18n } from '../context/I18nContext';
+import { useTranslations } from '../context/I18nContext';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { t } = useI18n();
+  const translations = useTranslations();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,7 +41,7 @@ const Header: React.FC = () => {
         {/* Centered Brand */}
         <div className="flex-shrink-0">
           <a href="#" className="text-2xl font-bold font-serif text-white tracking-wider">
-            {t('header_brand')} <span className="text-cyan-400">F.C.</span>
+            {translations.header_brand} <span className="text-cyan-400">F.C.</span>
           </a>
         </div>
 
@@ -50,9 +50,9 @@ const Header: React.FC = () => {
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center">
             <nav className="flex items-center space-x-6">
-              <a href="#colecciones" className="text-slate-300 hover:text-cyan-400 transition-colors">{t('nav_collections')}</a>
-              <a href="#leyendas" className="text-slate-300 hover:text-cyan-400 transition-colors">{t('nav_legends')}</a>
-              <a href="#nosotros" className="text-slate-300 hover:text-cyan-400 transition-colors">{t('nav_about')}</a>
+              <a href="#colecciones" className="text-slate-300 hover:text-cyan-400 transition-colors">{translations.nav_collections}</a>
+              <a href="#leyendas" className="text-slate-300 hover:text-cyan-400 transition-colors">{translations.nav_legends}</a>
+              <a href="#nosotros" className="text-slate-300 hover:text-cyan-400 transition-colors">{translations.nav_about}</a>
             </nav>
           </div>
 
@@ -78,9 +78,9 @@ const Header: React.FC = () => {
       `}>
         <div className="flex flex-col items-center justify-center h-full">
           <nav className="flex flex-col items-center justify-center space-y-8 mb-12">
-            <a href="#colecciones" onClick={toggleMenu} className="text-slate-300 text-3xl hover:text-cyan-400 transition-colors">{t('nav_collections')}</a>
-            <a href="#leyendas" onClick={toggleMenu} className="text-slate-300 text-3xl hover:text-cyan-400 transition-colors">{t('nav_legends')}</a>
-            <a href="#nosotros" onClick={toggleMenu} className="text-slate-300 text-3xl hover:text-cyan-400 transition-colors">{t('nav_about')}</a>
+            <a href="#colecciones" onClick={toggleMenu} className="text-slate-300 text-3xl hover:text-cyan-400 transition-colors">{translations.nav_collections}</a>
+            <a href="#leyendas" onClick={toggleMenu} className="text-slate-300 text-3xl hover:text-cyan-400 transition-colors">{translations.nav_legends}</a>
+            <a href="#nosotros" onClick={toggleMenu} className="text-slate-300 text-3xl hover:text-cyan-400 transition-colors">{translations.nav_about}</a>
           </nav>
         </div>
       </div>

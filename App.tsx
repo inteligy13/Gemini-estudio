@@ -8,17 +8,17 @@ import Footer from './components/Footer';
 import WelcomeModal from './components/WelcomeModal';
 import Modal from './components/Modal';
 import { Jersey } from './types';
-import { I18nProvider, useI18n } from './context/I18nContext';
+import { I18nProvider, useTranslations } from './context/I18nContext';
 import LanguageSwitcher from './components/LanguageSwitcher';
 
 const AppContent: React.FC = () => {
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
   const [selectedJersey, setSelectedJersey] = useState<Jersey | null>(null);
-  const { t } = useI18n();
+  const translations = useTranslations();
 
   useEffect(() => {
-    document.title = t('document_title');
-  }, [t]);
+    document.title = translations.document_title;
+  }, [translations]);
 
   const handleVerMasClick = (jersey: Jersey) => {
     setSelectedJersey(jersey);
@@ -53,7 +53,7 @@ const AppContent: React.FC = () => {
             <h2 
               className="text-3xl md:text-5xl font-bold font-serif text-center mb-12 md:mb-20"
             >
-              {t('collections_title')} <span className="text-cyan-400">{t('collections_title_span')}</span>
+              {translations.collections_title} <span className="text-cyan-400">{translations.collections_title_span}</span>
             </h2>
             <FeaturedJerseys onVerMasClick={handleVerMasClick} />
           </div>
@@ -62,7 +62,7 @@ const AppContent: React.FC = () => {
           <h2 
             className="text-3xl md:text-5xl font-bold font-serif text-white text-center drop-shadow-lg"
           >
-            {t('parallax1_title')} <span className="text-cyan-400">{t('parallax1_title_span')}</span>
+            {translations.parallax1_title} <span className="text-cyan-400">{translations.parallax1_title_span}</span>
           </h2>
         </ParallaxSection>
         <section id="leyendas" className="py-20 md:py-32 bg-slate-900">
@@ -70,7 +70,7 @@ const AppContent: React.FC = () => {
             <h2 
               className="text-3xl md:text-5xl font-bold font-serif text-center mb-12 md:mb-20"
             >
-              {t('legends_title')} <span className="text-cyan-400">{t('legends_title_span')}</span>
+              {translations.legends_title} <span className="text-cyan-400">{translations.legends_title_span}</span>
             </h2>
             <LegendsCollection onVerMasClick={handleVerMasClick} />
           </div>
@@ -80,10 +80,10 @@ const AppContent: React.FC = () => {
              <h2 
                 className="text-3xl md:text-5xl font-bold font-serif mb-6"
              >
-               {t('parallax2_title')} <span className="text-cyan-400">{t('parallax2_title_span')}</span>
+               {translations.parallax2_title} <span className="text-cyan-400">{translations.parallax2_title_span}</span>
              </h2>
              <p className="max-w-3xl mx-auto md:text-lg">
-               {t('parallax2_text')}
+               {translations.parallax2_text}
              </p>
            </div>
         </ParallaxSection>

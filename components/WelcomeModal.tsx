@@ -1,10 +1,9 @@
-
 import React, { useState, useEffect, useCallback } from 'react';
-import { useI18n } from '../context/I18nContext';
+import { useTranslations } from '../context/I18nContext';
 
 const WelcomeModal: React.FC = () => {
   const [isOpen, setIsOpen] = useState(true);
-  const { t } = useI18n();
+  const translations = useTranslations();
 
   const handleClose = useCallback(() => {
     setIsOpen(false);
@@ -68,7 +67,7 @@ const WelcomeModal: React.FC = () => {
         <button 
           onClick={handleClose} 
           className="absolute top-4 right-4 bg-red-600 rounded-full p-1.5 hover:bg-red-500 transition-colors z-10"
-          aria-label={t('welcome_modal_close_button_aria')}
+          aria-label={translations.welcome_modal_close_button_aria}
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
