@@ -1,6 +1,8 @@
+
 import React, { useRef, useState } from 'react';
 import { Jersey } from '../types';
 import useOnScreen from '../hooks/useOnScreen';
+import { useI18n } from '../context/I18nContext';
 
 interface JerseyCardProps {
   jersey: Jersey;
@@ -12,6 +14,7 @@ const JerseyCard: React.FC<JerseyCardProps> = ({ jersey, animationDelay = 0, onV
   const ref = useRef<HTMLDivElement>(null);
   const isVisible = useOnScreen(ref, '-100px');
   const [isFlipped, setIsFlipped] = useState(false);
+  const { t } = useI18n();
 
   const handleFlip = () => {
     if (!isFlipped) {
@@ -28,6 +31,8 @@ const JerseyCard: React.FC<JerseyCardProps> = ({ jersey, animationDelay = 0, onV
     e.stopPropagation();
     onVerMasClick(jersey);
   }
+  
+  const jerseyTypeKey = `jersey_type_${jersey.type}`;
 
   return (
     <div
@@ -48,14 +53,14 @@ const JerseyCard: React.FC<JerseyCardProps> = ({ jersey, animationDelay = 0, onV
           <div>
             <div className="flex justify-between items-start">
               <h3 className="text-xl md:text-2xl font-bold font-serif mb-2">{jersey.teamName}</h3>
-              <div className="bg-cyan-500/90 text-slate-900 font-bold px-3 py-1 rounded-full text-sm flex-shrink-0">{jersey.type}</div>
+              <div className="bg-cyan-500/90 text-slate-900 font-bold px-3 py-1 rounded-full text-sm flex-shrink-0">{t(jerseyTypeKey)}</div>
             </div>
-            <p className="text-sm text-slate-400 mb-4">{jersey.year} - {jersey.description}</p>
+            <p className="text-sm text-slate-400 mb-4">{jersey.year} - {t(jersey.description)}</p>
           </div>
 
           <div className="flex justify-between items-center mt-4">
             <p className="text-cyan-400/90 font-semibold text-sm animate-bounce-subtle">
-              Click para ver
+              {t('jersey_card_flip_prompt')}
             </p>
             <span className="text-2xl md:text-3xl font-bold text-cyan-400">${jersey.price}</span>
           </div>
@@ -67,11 +72,11 @@ const JerseyCard: React.FC<JerseyCardProps> = ({ jersey, animationDelay = 0, onV
             style={{ backgroundImage: `url(${jersey.imageUrl})` }}
         >
             <div className="absolute inset-0 bg-black/30"></div>
-            <button onClick={handleUnflip} className="absolute top-4 left-4 z-10 text-white bg-black/50 rounded-full p-1.5 hover:bg-black/80 transition-colors" aria-label="Volver">
+            <button onClick={handleUnflip} className="absolute top-4 left-4 z-10 text-white bg-black/50 rounded-full p-1.5 hover:bg-black/80 transition-colors" aria-label={t('jersey_card_back_button_aria')}>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
             <button onClick={handleVerMas} className="absolute top-4 right-4 z-10 text-white bg-black/50 rounded-md px-3 py-1.5 text-sm font-semibold hover:bg-black/80 transition-colors">
-                Ver más
+                {t('jersey_card_details_button')}
             </button>
         </div>
       </div>

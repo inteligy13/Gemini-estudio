@@ -1,7 +1,10 @@
+
 import React, { useState, useEffect, useCallback } from 'react';
+import { useI18n } from '../context/I18nContext';
 
 const WelcomeModal: React.FC = () => {
   const [isOpen, setIsOpen] = useState(true);
+  const { t } = useI18n();
 
   const handleClose = useCallback(() => {
     setIsOpen(false);
@@ -19,7 +22,7 @@ const WelcomeModal: React.FC = () => {
       return () => {
         clearTimeout(timer);
         // Only remove styles if no other modal is open
-        const detailModalIsOpen = document.querySelector('.fixed.inset-0.z-50');
+        const detailModalIsOpen = document.querySelector('.fixed.inset-0.z-50[aria-label*="modal"]'); // More specific selector
         if (!detailModalIsOpen) {
             document.body.style.overflow = 'unset';
         }
@@ -27,7 +30,11 @@ const WelcomeModal: React.FC = () => {
       };
     } else {
        document.body.classList.remove('welcome-modal-open');
-       document.body.style.overflow = 'unset';
+       // Check if detail modal is open before resetting overflow
+       const detailModalIsOpen = document.querySelector('.fixed.inset-0.z-50[aria-label*="modal"]');
+       if (!detailModalIsOpen) {
+         document.body.style.overflow = 'unset';
+       }
     }
   }, [isOpen, handleClose]);
 
@@ -61,7 +68,7 @@ const WelcomeModal: React.FC = () => {
         <button 
           onClick={handleClose} 
           className="absolute top-4 right-4 bg-red-600 rounded-full p-1.5 hover:bg-red-500 transition-colors z-10"
-          aria-label="Cerrar modal de bienvenida"
+          aria-label={t('welcome_modal_close_button_aria')}
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

@@ -1,9 +1,8 @@
-
 export interface Jersey {
   id: number;
   teamName: string;
   year: number;
-  type: 'Local' | 'Visitante' | 'Alternativa';
+  type: 'home' | 'away' | 'third';
   price: number;
   imageUrl: string;
   description: string;
